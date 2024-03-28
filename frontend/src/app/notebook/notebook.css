@@ -47,7 +47,3 @@
   display: flex;
   /* position: absolute; */
 }
-
-button {
-  background-color: oklch(32.1% 0 NaN);
-}

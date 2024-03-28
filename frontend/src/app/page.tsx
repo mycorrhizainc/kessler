@@ -2,7 +2,7 @@
 import ToolBar from "../lib/components/ToolBar";
 
 export default function Home() {
-  return <>
+  return <main>
     <ToolBar/>
-  </>;
+  </main>;
 }

@@ -2,8 +2,8 @@ import "reactflow/dist/style.css";
 
 import ReactFlow, { Controls } from "reactflow";
 
-import ChatNode from "@/lib/Components/Nodes/ChatNode.tsx";
-import DocumentNode from "@/lib/Components/Nodes/DocumentNode";
+import ChatNode from "../Nodes/ChatNode";
+import DocumentNode from "../Nodes/DocumentNode";
 
 import { GraphState } from "../../utils/GraphUtilities";
 import useGraphStore from "../../utils/GraphUtilities";

@@ -5,22 +5,20 @@ import Box from "@mui/joy/Box";
 import Container from "@mui/joy/Container";
 
 type UploadProps = {
-  children: React.ReactNode
-}
-const UploadPane = ({children}: UploadProps) =>  {
-  return <>
-    {children}
-  </> 
-}
+  children: React.ReactNode;
+};
+const UploadPane = ({ children }: UploadProps) => {
+  return <>{children}</>;
+};
 
 const BrowseView = () => {
-  return <Layout>
-    <UploadPane>
-      <div className="">
-        asdf
-        </div> 
-    </UploadPane>
-  </Layout>;
+  return (
+    <Layout>
+      <UploadPane>
+        <div className="">asdf</div>
+      </UploadPane>
+    </Layout>
+  );
 };
 
 export default BrowseView;

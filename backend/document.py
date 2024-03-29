@@ -15,7 +15,13 @@ from pydantic import TypeAdapter
 
 from db import BaseModel
 
+
 class DocumentModel(UUIDAuditBase):
     __tablename__ = "document"
     path: Mapped[str]
     name: Mapped[str]
+    dochash: Mapped[str]  # base64 Blake2 Hash
+    metadata_json: Mapped[str]  # TODO : Change to make it a pickle type later
+    text: Mapped[str]
+    summary: Mapped[str]
+    short_summary: Mapped[str]

@@ -2,7 +2,7 @@
 
 # Pycache and .pyc files 
 **/__pycache__
-**/*.pyc
+*.pyc
 
 # vscode
 .vscode

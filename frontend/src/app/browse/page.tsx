@@ -4,20 +4,22 @@ import ToolBar from "../../lib/components/ToolBar";
 import Box from "@mui/joy/Box";
 import Container from "@mui/joy/Container";
 
+type UploadProps = {
+  children: React.ReactNode
+}
+const UploadPane = ({children}: UploadProps) =>  {
+  return <>
+    {children}
+  </> 
+}
+
 const BrowseView = () => {
   return <Layout>
-    <div className="bg-slate-100 container center flex flex-column">
-      <Box className="grow shrink-8"
-      sx={{
-        
-      }}>
-        things
-        <br />
-        stuff
-        <br />
-        aand the like
-      </Box>
-    </div>
+    <UploadPane>
+      <div className="">
+        asdf
+        </div> 
+    </UploadPane>
   </Layout>;
 };
 

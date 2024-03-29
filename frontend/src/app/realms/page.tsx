@@ -1,7 +1,6 @@
-"use client"
-import ToolBar from "../../lib/components/ToolBar"
+"use client";
+import ToolBar from "../../lib/components/ToolBar";
+import Layout from "../../lib/components/AppLayout";
 export default function RealmsView() {
-    return <>
-        <ToolBar/>
-    </>
+  return <Layout>realms</Layout>;
 }

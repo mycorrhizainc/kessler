@@ -38,8 +38,8 @@ body {
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark light;
-  color: oklch(100% 0 NaN / 0.87);
+  color-scheme: dark;
+  color: oklch(0% 0 116);
   background-color: #d0e2c0;
 
   font-synthesis: none;
@@ -47,9 +47,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-
 
 @tailwind components;
 

@@ -25,15 +25,6 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { Bookmark, Home, SatelliteAlt } from "@mui/icons-material";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 
-const selector = (state: GraphState) => ({
-  setNodes: state.setNodes,
-  setEdges: state.setEdges,
-  generateRandomNodes: state.generateRandomNodes,
-  generateDebugNodeGraph: state.generateDebugNodeGraph,
-  // ClusterNodesAround: state.ClusterNodesAround,
-  ClusterAroundNode: state.ClusterAroundNode,
-});
-
 const ToolBar = () => {
   const pathname = usePathname();
   const [index, setIndex] = React.useState(-1);
@@ -68,16 +59,7 @@ const ToolBar = () => {
     if (pathval[path]) setIndex(pathval[path]);
   }, []);
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        m: -3,
-        p: 4,
-        borderTopLeftRadius: "12px",
-        borderTopRightRadius: "12px",
-      }}
-      className="toolbar bottom-0"
-    >
+    <div className="absolute justify-center mb-7 place-content-center inset-x-0 bottom-2 z-10">
       <Tabs
         size="lg"
         aria-label="Bottom Navigation"
@@ -169,7 +151,7 @@ const ToolBar = () => {
           </Tooltip>
         </TabList>
       </Tabs>
-    </Box>
+    </div>
   );
 };
 

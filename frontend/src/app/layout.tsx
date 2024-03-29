@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"container h-lvh aspect-auto"+inter.className}>{children}</body>
+      <body className={"container"+inter.className}>{children}</body>
     </html>
   );
 }

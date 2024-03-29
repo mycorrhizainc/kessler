@@ -1,5 +1,6 @@
+"use client";
 import BaseFlow from "../../lib/components/Flows/BaseFlow";
-import ToolBar from "../../lib/components/ToolBar";
+import ToolBar from "../../lib/components/ToolBarLegacy";
 
 const ExperimentsView = () => {
   // store the graph locally

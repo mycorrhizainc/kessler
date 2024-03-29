@@ -31,9 +31,6 @@ import os
 import pickle
 
 
-from functools import reduce
-import itertools
-
 from pathlib import Path
 import shlex
 
@@ -42,8 +39,6 @@ from src.niclib import *
 from src.llm_prompts import LLM, token_split
 
 from src.datatypes import *
-
-
 
 
 from langchain.vectorstores import FAISS

@@ -47,7 +47,7 @@ services:
       - "4"
       - "--reload"
     ports:
-      - "5505:5505"
+      - 5505:5505
       # - "${BACKEND_PORT}:${BACKEND_PORT}"
 
   frontend:
@@ -67,8 +67,8 @@ services:
       - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
 
     ports:
-      - "3000:3000"
-      -  # "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      - 3000:3000
+      # - "${FRONTEND_PORT}:${FRONTEND_PORT}"
 
     command:
       - "npm"

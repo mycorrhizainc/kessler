@@ -22,6 +22,7 @@ from pydantic import TypeAdapter, validator
 
 from db import BaseModel
 
+
 class FileModel(UUIDAuditBase):
     __tablename__ = "file"
     url: Mapped[str]
@@ -46,10 +47,10 @@ async def provide_files_repo(db_session: AsyncSession) -> FileRepository:
 
 
 class File(BaseModel):
-    id: any # TODO: figure out a better type for this UUID :/
+    id: any  # TODO: figure out a better type for this UUID :/
     url: str
     title: str | None
-    
+
     @validator("id")
     def validate_uuid(cls, value):
         if value:
@@ -65,11 +66,13 @@ class FileUpdate(BaseModel):
 class FileCreate(BaseModel):
     url: str
     title: str | None = None
+    isUrl: bool
 
 
+# litestar only
 class FileController(Controller):
     """File Controller"""
-    
+
     dependencies = {"files_repo": Provide(provide_files_repo)}
 
     @get(path="/files/{file_id:uuid}")
@@ -96,7 +99,13 @@ class FileController(Controller):
         type_adapter = TypeAdapter(list[File])
         return type_adapter.validate_python(results)
 
-    @post(path="/files")
+    @post(path="files/upload")
+    async def upload_file(
+        self
+    ) -> File:
+        pass
+
+    @post(path="/links/add")
     async def add_file(
         self,
         files_repo: FileRepository,

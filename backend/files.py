@@ -22,10 +22,14 @@ from pydantic import TypeAdapter, validator
 
 from db import BaseModel
 
+
 class FileModel(UUIDAuditBase):
     __tablename__ = "file"
     url: Mapped[str]
     title: Mapped[str]
+    doctype: Mapped[str]
+    metadata: Mapped[str]
+    extras: Mapped[str]
 
     @validator("id")
     def validate_uuid(cls, value):
@@ -46,10 +50,10 @@ async def provide_files_repo(db_session: AsyncSession) -> FileRepository:
 
 
 class File(BaseModel):
-    id: any # TODO: figure out a better type for this UUID :/
+    id: any  # TODO: figure out a better type for this UUID :/
     url: str
     title: str | None
-    
+
     @validator("id")
     def validate_uuid(cls, value):
         if value:
@@ -69,27 +73,21 @@ class FileCreate(BaseModel):
 
 class FileController(Controller):
     """File Controller"""
-    
+
     dependencies = {"files_repo": Provide(provide_files_repo)}
 
     @get(path="/files/{file_id:uuid}")
     async def get_file(
         self,
         files_repo: FileRepository,
-        file_id: UUID = Parameter(
-            title="File ID",
-            description="File to retieve"
-        ),
+        file_id: UUID = Parameter(title="File ID", description="File to retieve"),
     ) -> File:
         obj = files_repo.get(file_id)
         return File.model_validate(obj)
 
     @get(path="/files/all")
     async def get_all_files(
-        self,
-        files_repo: FileRepository,
-        limit_offset: LimitOffset,
-        request: Request
+        self, files_repo: FileRepository, limit_offset: LimitOffset, request: Request
     ) -> list[File]:
         """List files."""
         results = await files_repo.list()
@@ -98,10 +96,7 @@ class FileController(Controller):
 
     @post(path="/files")
     async def add_file(
-        self,
-        files_repo: FileRepository,
-        data: FileCreate,
-        request: Request
+        self, files_repo: FileRepository, data: FileCreate, request: Request
     ) -> File:
         request.logger.info("adding files")
         request.logger.info(data)
@@ -121,10 +116,7 @@ class FileController(Controller):
         self,
         files_repo: FileRepository,
         data: FileUpdate,
-        file_id: UUID = Parameter(
-            title="File ID",
-            description="File to retieve"
-        ),
+        file_id: UUID = Parameter(title="File ID", description="File to retieve"),
     ) -> File:
         """Update a File."""
         raw_obj = data.model_dump(exclude_unset=True, exclude_none=True)
@@ -137,10 +129,7 @@ class FileController(Controller):
     async def delete_file(
         self,
         files_repo: FileRepository,
-        file_id: UUID = Parameter(
-            title="File ID",
-            description="File to retieve"
-        ),
+        file_id: UUID = Parameter(title="File ID", description="File to retieve"),
     ) -> None:
         _ = files_repo.delete(files_repo)
         files_repo.session.commit()

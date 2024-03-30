@@ -38,10 +38,10 @@ from util.gpu_compute_calls import GPUComputeEndpoint
 
 class MarkdownExtractor:
     def __init__(
-        self, endpoint: GPUComputeEndpoint, tmpdir=Path("/tmp/kessler/extractmarkdown")
+        self, endpoint_url: str, tmpdir=Path("/tmp/kessler/extractmarkdown")
     ):
         self.tmpdir = tmpdir
-        self.endpoint = endpoint
+        self.endpoint_url = endpoint
         # TODO : Add database connection.
 
     def process_raw_document_into_english_text(self, file_loc: Path, metadata: dict):
@@ -49,7 +49,7 @@ class MarkdownExtractor:
         lang = metadata["lang"]
         if lang in ["en", "eng", "english", None]:
             return raw_text
-        english_text = self.endpoint.translate_text(raw_text, lang, "en")
+        english_text = GPUComputeEndpoint(self.endpoint_url).translate_text(raw_text, lang, "en")
         return english_text
 
     def process_raw_document_into_untranslated_text(
@@ -61,12 +61,12 @@ class MarkdownExtractor:
             source_lang = metadata["language"]
             target_lang = "en"
             doctype = metadata["doctype"]
-            return self.endpoint.audio_to_text(
+            return GPUComputeEndpoint(self.endpoint_url).audio_to_text(
                 filepath, source_lang, target_lang, doctype
             )
 
         def process_pdf(filepath: Path) -> str:
-            return self.endpoint.transcribe_pdf(filepath)
+            return GPUComputeEndpoint(self.endpoint_url).transcribe_pdf(filepath)
 
         # Take a file with a path of path and a pandoc type of doctype and convert it to pandoc markdown and return the output as a string.
         # TODO: Make it so that you dont need to run sudo apt install pandoc for it to work, and it bundles with the pandoc python library

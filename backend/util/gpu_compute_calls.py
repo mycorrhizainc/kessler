@@ -53,7 +53,7 @@ def downsample_audio(
 
 class GPUComputeEndpoint:
     def __init__(self, endpoint_url: str):
-        self.endpoint_url = endpoint_url
+        GPUComputeEndpoint(self.endpoint_url)_url = endpoint_url
 
     def llm_nonlocal_raw_call(
         self, msg_history: list[dict], model_name: Optional[str]
@@ -61,12 +61,12 @@ class GPUComputeEndpoint:
         if model_name == None:
             model_name = "nous-hermes-2-mistral-7b-dpo"
         # The API endpoint you will be hitting
-        url = f"{self.endpoint_url}/v0/chat_completion/external_api"
+        url = f"{GPUComputeEndpoint(self.endpoint_url)_url}/v0/chat_completion/external_api"
         jsonpayload = {
             "messages": msg_history,
             "model_name": model_name,
         }
-        print(f"Calling external endpoint: {self.endpoint_url}")
+        print(f"Calling external endpoint: {GPUComputeEndpoint(self.endpoint_url)_url}")
         # Make the POST request with files
         response = requests.post(url, json=jsonpayload)
         # Raise an exception if the request was unsuccessful
@@ -83,7 +83,7 @@ class GPUComputeEndpoint:
         self, filepath: Path, source_lang: str, target_lang: str, file_type: str
     ) -> str:
         # The API endpoint you will be hitting
-        url = f"{self.endpoint_url}/v0/multimodal_asr/whisper-latest"
+        url = f"{GPUComputeEndpoint(self.endpoint_url)_url}/v0/multimodal_asr/whisper-latest"
         # Open the file in binary mode
         with filepath.open("rb") as file:
             # Define the multipart/form-data payload
@@ -121,7 +121,7 @@ class GPUComputeEndpoint:
     def transcribe_pdf(self, filepath: Path) -> str:
         # The API endpoint you will be hitting
         # url = "http://api.mycor.io/v0/multimodal_asr/local-m4t"
-        url = f"{self.endpoint_url}/v0/document-ocr/local-nougat"
+        url = f"{GPUComputeEndpoint(self.endpoint_url)_url}/v0/document-ocr/local-nougat"
         # Open the file in binary mode
         with filepath.open("rb") as file:
             # Define the multipart/form-data payload
@@ -146,7 +146,7 @@ class GPUComputeEndpoint:
             raise Exception("Invalid Model ID")
         if len(text_list) == 0:
             return []
-        url = f"{self.endpoint_url}/v0/embedding/{model_name}"
+        url = f"{GPUComputeEndpoint(self.endpoint_url)_url}/v0/embedding/{model_name}"
         payload = {"embeddable": text_list, "model_name": model_name}
         response = requests.post(url, json=payload)
         response.raise_for_status()
@@ -172,7 +172,7 @@ class GPUComputeEndpoint:
     def translate_text(
         self, doctext: str, source_lang: Optional[str], target_lang: str
     ) -> str:
-        url = f"{self.endpoint_url}/v0/translation/google-translate"
+        url = f"{GPUComputeEndpoint(self.endpoint_url)_url}/v0/translation/google-translate"
         payload = {
             "text": doctext,
             "source_lang": source_lang,

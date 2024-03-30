@@ -78,7 +78,7 @@ class DocumentProcessor:
         self.tmpdir.mkdir(parents=True, exist_ok=True)
         self.crossref = Crossref()
         self.embeddings = embeddings
-        self.endpoint = gpu_compute_endpoint
+        GPUComputeEndpoint(self.endpoint_url) = gpu_compute_endpoint
         self.llm = llm
         if picklepath == None:
             self.__documentlist: dict = {}
@@ -261,12 +261,12 @@ class DocumentProcessor:
             source_lang = documentid.metadata["language"]
             target_lang = "en"
             doctype = documentid.metadata["doctype"]
-            return self.endpoint.audio_to_text(
+            return GPUComputeEndpoint(self.endpoint_url).audio_to_text(
                 filepath, source_lang, target_lang, doctype
             )
 
         def process_pdf(filepath: Path) -> str:
-            return self.endpoint.transcribe_pdf(filepath)
+            return GPUComputeEndpoint(self.endpoint_url).transcribe_pdf(filepath)
 
         # Take a file with a path of path and a pandoc type of doctype and convert it to pandoc markdown and return the output as a string.
         # TODO: Make it so that you dont need to run sudo apt install pandoc for it to work, and it bundles with the pandoc python library
@@ -406,10 +406,10 @@ class DocumentProcessor:
             return self.get_proc_doc_original(doc)
         elif self.is_english(doc):
             eng_text = self.get_proc_doc(doc)
-            return self.endpoint.translate_text(eng_text, "en", target_lang)
+            return GPUComputeEndpoint(self.endpoint_url).translate_text(eng_text, "en", target_lang)
         else:
             doc_text = self.get_proc_doc_original(doc)
-            return self.endpoint.translate_text(
+            return GPUComputeEndpoint(self.endpoint_url).translate_text(
                 doc_text, doc.metadata["lang"], target_lang
             )
 

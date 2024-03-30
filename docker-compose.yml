@@ -47,7 +47,8 @@ services:
       - "4"
       - "--reload"
     ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
+      - "5505:5505"
+      # - "${BACKEND_PORT}:${BACKEND_PORT}"
 
   frontend:
     build:
@@ -66,7 +67,8 @@ services:
       - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
 
     ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      - "3000:3000"
+      -  # "${FRONTEND_PORT}:${FRONTEND_PORT}"
 
     command:
       - "npm"
@@ -74,4 +76,5 @@ services:
       - "dev"
       - "--"
       - "-p"
-      - "$FRONTEND_PORT"
+      - "3000"
+      # - "$FRONTEND_PORT"

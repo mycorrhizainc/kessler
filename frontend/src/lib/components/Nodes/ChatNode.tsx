@@ -41,12 +41,12 @@ const selector = (state: GraphState) => ({
 
 type ChatNodeProps = {
   id: string;
-  // TODO: define this data 
+  // TODO: define this data
   data: any;
   isConnectable: boolean;
 };
 
-function ChatNode({id, data, isConnectable} : ChatNodeProps) {
+function ChatNode({ id, data, isConnectable }: ChatNodeProps) {
   const { setNodeData } = UseGraphStore(selector, shallow);
 
   const [inputValue, setInputValue] = useState("");
@@ -80,7 +80,7 @@ function ChatNode({id, data, isConnectable} : ChatNodeProps) {
   };
   const generateChatCompletion = async (
     chat_history: object[],
-    model_name: string
+    model_name: string,
   ) => {
     try {
       const { data, status } = await axios.post(
@@ -95,7 +95,7 @@ function ChatNode({id, data, isConnectable} : ChatNodeProps) {
             "Content-Type": "application/json",
           },
           timeout: 30000, // 30 Second timeout
-        }
+        },
       );
       if (status === 200) {
         console.log("Request succeeded");

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { link } from "fs";
 import { stringify } from "querystring";
+import ToolBar from "../../lib/components/ToolBar";
+import Layout from "../../lib/components/AppLayout";
 
 type LinkData = {
   date_created: string;
@@ -74,7 +76,7 @@ const LinksView = () => {
     );
   });
   return (
-    <>
+    <Layout>
       <div>
         <h1>Links</h1>
         {links.length > 0 && <ul>{items}</ul>}
@@ -84,7 +86,7 @@ const LinksView = () => {
       <>
         <AddLink refreshList={getAllLinks} />
       </>
-    </>
+    </Layout>
   );
 };
 

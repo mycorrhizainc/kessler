@@ -69,8 +69,10 @@ class FileUpdate(BaseModel):
 class FileCreate(BaseModel):
     url: str
     title: str | None = None
+    isUrl: bool
 
 
+# litestar only
 class FileController(Controller):
     """File Controller"""
 
@@ -94,7 +96,13 @@ class FileController(Controller):
         type_adapter = TypeAdapter(list[File])
         return type_adapter.validate_python(results)
 
-    @post(path="/files")
+    @post(path="files/upload")
+    async def upload_file(
+        self
+    ) -> File:
+        pass
+
+    @post(path="/links/add")
     async def add_file(
         self, files_repo: FileRepository, data: FileCreate, request: Request
     ) -> File:

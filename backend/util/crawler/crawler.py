@@ -2,7 +2,8 @@
 
 from db import BaseModel
 
+
 class Crawler(BaseModel):
     def crawl(text: str):
         pass
-        
+

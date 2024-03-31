@@ -30,6 +30,7 @@ class FileModel(UUIDAuditBase):
     doctype: Mapped[str]
     metadata: Mapped[str]
     extras: Mapped[str]
+    status: Mapped[str]
 
     @validator("id")
     def validate_uuid(cls, value):
@@ -97,9 +98,7 @@ class FileController(Controller):
         return type_adapter.validate_python(results)
 
     @post(path="files/upload")
-    async def upload_file(
-        self
-    ) -> File:
+    async def upload_file(self) -> File:
         pass
 
     @post(path="/links/add")

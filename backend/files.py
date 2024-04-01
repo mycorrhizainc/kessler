@@ -25,18 +25,44 @@ from db import BaseModel
 
 class FileModel(UUIDAuditBase):
     __tablename__ = "file"
-    url: Mapped[str]
-    title: Mapped[str]
+    hash: Mapped[
+        str
+    ]  # Blake2. For the file database this should absolutely be the primary key,
     doctype: Mapped[str]
-    metadata: Mapped[str]
-    extras: Mapped[str]
-    status: Mapped[str]
+    lang: Mapped[str]
+    title: Mapped[
+        str
+    ]  # I dont know if this should be included either in here or as a entry in doc_metadata, expecially since its only ever going to be used by the frontend. However, it might be an important query paramater and it seems somewhat irresponsible to not include.
+    doc_metadata: Mapped[str]
+    status: Mapped[str]  # Either "stage0" "stage1" "stage2" or "stage3"
+    summary: Mapped[str]
+    short_summary: Mapped[str]
+    full_text_embedding: Mapped[
+        any
+    ]  # whatever the type for this is lol, potentially generate it by embedding the summary if the long embeddings dont work.
 
     @validator("id")
     def validate_uuid(cls, value):
         if value:
             return str(value)
         return value
+
+
+class TextStorage(UUIDAuditBase):
+    hash: Mapped[str]  # Foreign Key into FileModel
+    original_text: Mapped[str]
+    en_text: Mapped[str]
+
+
+class FileUpload(BaseModel):
+    file_metadata: dict
+    # Figure out how to do a file upload datatype, maybe with werkzurg or something
+
+
+class UrlUpload(BaseModel):
+    url: str
+    # I am going to be removing the ability for overloading metadata
+    # title: str | None = None
 
 
 class FileRepository(SQLAlchemyAsyncRepository[FileModel]):
@@ -65,12 +91,6 @@ class File(BaseModel):
 class FileUpdate(BaseModel):
     url: str | None = None
     title: str | None = None
-
-
-class FileCreate(BaseModel):
-    url: str
-    title: str | None = None
-    isUrl: bool
 
 
 # litestar only

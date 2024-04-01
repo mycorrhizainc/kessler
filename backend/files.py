@@ -23,11 +23,15 @@ from pydantic import TypeAdapter, validator
 from db import BaseModel
 
 
+from pathlib import Path
+
+
 class FileModel(UUIDAuditBase):
     __tablename__ = "file"
     hash: Mapped[
         str
     ]  # Blake2. For the file database this should absolutely be the primary key,
+    path: Mapped[Path]
     doctype: Mapped[str]
     lang: Mapped[str]
     title: Mapped[

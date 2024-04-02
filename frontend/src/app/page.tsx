@@ -1,12 +1,7 @@
 "use client";
 // components
-<<<<<<< HEAD
 import Layout from "../lib/components/AppLayout";
 import LinksView from "../lib/components/ResourceList";
-=======
-import ToolBar from "../lib/components/ToolBar";
-import Layout from "../lib/components/AppLayout";
->>>>>>> fb33946 (fixed frontend spacing, added link form)
 
 // utils
 import { AddLink } from "../lib/api/files/requests";
@@ -15,18 +10,14 @@ import { AddLink } from "../lib/api/files/requests";
 import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/joy/Button";
 import Alert from "@mui/joy/Alert";
-<<<<<<< HEAD
 import Divider from "@mui/material/Divider";
 import SvgIcon from "@mui/joy/SvgIcon";
 import { styled } from "@mui/joy";
-=======
->>>>>>> fb33946 (fixed frontend spacing, added link form)
 
 // mui icons
 import Add from "@mui/icons-material/Add";
 
 import Box from "@mui/joy/Box";
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { FileType } from "../lib/interfaces";
@@ -42,19 +33,13 @@ const VisuallyHiddenInput = styled("input")`
   white-space: nowrap;
   width: 1px;
 `;
-=======
-import { useState } from "react";
->>>>>>> fb33946 (fixed frontend spacing, added link form)
 
 const AddResourceComponent = () => {
   const [buttonLoading, setButtonLoad] = useState(false);
   const [hasError, setError] = useState(false);
-<<<<<<< HEAD
 
   const [links, setLinks] = useState<FileType[]>([]);
 
-=======
->>>>>>> fb33946 (fixed frontend spacing, added link form)
   const [errorText, setErrorText] = useState(
     "there was an issue processing your request"
   );
@@ -78,7 +63,6 @@ const AddResourceComponent = () => {
       setErrorText(old);
     }, 3000);
   };
-<<<<<<< HEAD
   const getAllLinks = async () => {
     let result = await fetch("/api/files/all", {
       method: "get",
@@ -100,10 +84,6 @@ const AddResourceComponent = () => {
   };
 
   const handleLinkSubmission = async (e: any) => {
-=======
-
-  const handleLinkSubmission = (e: any) => {
->>>>>>> fb33946 (fixed frontend spacing, added link form)
     e.preventDefault();
     console.log("handling submission");
     setButtonLoad(true);
@@ -115,7 +95,6 @@ const AddResourceComponent = () => {
     };
 
     const linkText = formElements.linkText.value;
-<<<<<<< HEAD
 
     const isValidUrl = (urlString: string) => {
       var urlPattern = new RegExp(
@@ -165,21 +144,6 @@ const AddResourceComponent = () => {
       <h1 className="place-self-center text-lg">Add A Resource</h1>
       <Box
         className="flex flex-col place-self-center justify-self-center content-center max-w-50 w-3/4 p-16 space-y-5"
-=======
-    setTimeout(() => {
-      setButtonLoad(false);
-      notifyOfSuccessfulSubmission();
-    }, 300);
-    // notifyOfErrorSubmission();
-    // validate that the link is valid
-  };
-
-  return (
-    <div className="flex place-content-center resourceComponent container">
-      {/* card container */}
-      <Box
-        className="flex flex-col justify-self-center max-w-50 w-3/4 p-10 space-y-5"
->>>>>>> fb33946 (fixed frontend spacing, added link form)
         sx={{
           borderRadius: "12px",
           background: "white",

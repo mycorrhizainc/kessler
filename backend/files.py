@@ -32,6 +32,7 @@ class FileModel(UUIDAuditBase):
         str
     ]  # Blake2. For the file database this should absolutely be the primary key,
     path: Mapped[Path]
+    url: Mapped[Optional[str]]
     doctype: Mapped[str]
     lang: Mapped[str]
     title: Mapped[

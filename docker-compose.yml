@@ -47,32 +47,31 @@ services:
       - "4"
       - "--reload"
     ports:
-      #- 5505:5505
       - "${BACKEND_PORT}:${BACKEND_PORT}"
 
-  #   frontend:
-  #     build:
-  #       context: ./frontend
-  #       dockerfile: ./Dockerfile
-  #     env_file:
-  #       - .env
-  #     volumes:
-  #       - ./frontend/src:/app/src
-  #       - ./frontend/public:/app/public
-  #
-  #     labels:
-  #       - "traefik.enable=true"
-  #       - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
-  #
-  #     ports:
-  #       # - 3000:3000
-  #       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
-  #
-  #     command:
-  #       - "npm"
-  #       - "run"
-  #       - "dev"
-  #       - "--"
-  #       - "-p"
-  #       # - "3000"
-  #       - "$FRONTEND_PORT"
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+
+    ports:
+      # - 3000:3000
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+
+    command:
+      - "npm"
+      - "run"
+      - "dev"
+      - "--"
+      - "-p"
+      # - "3000"
+      - "$FRONTEND_PORT"

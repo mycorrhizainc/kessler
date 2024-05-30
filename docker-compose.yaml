@@ -52,25 +52,25 @@ services:
     expose:
       - "5055"
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: ./Dockerfile
-    env_file:
-      - .env
-    volumes:
-      # - ./frontend/src:/app/src
-      # - ./frontend/public:/app/public
-      - ./frontend/.env.local:/app/.env.local
+      # frontend:
+      #   build:
+      #     context: ./frontend
+      #     dockerfile: ./Dockerfile
+      #   env_file:
+      #     - .env
+      #   volumes:
+      #     # - ./frontend/src:/app/src
+      #     # - ./frontend/public:/app/public
+      #     - ./frontend/.env.local:/app/.env.local
 
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      #   labels:
+      #     - "traefik.enable=true"
+      #     - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
 
-    expose:
-      - "3000"
+      #   expose:
+      #     - "3000"
 
-    command:
-      - "npm"
-      - "run"
-      - "start"
+      #   command:
+      #     - "npm"
+      #     - "run"
+      #     - "start"

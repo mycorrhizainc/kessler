@@ -35,10 +35,10 @@ services:
       - ./volumes/instance:/app/instance
       - ./volumes/files:/files
       - ./volumes/tmp:/tmp/
-    labels:
-      # - "traefik.enable=true"
-      # - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"
-      # - "traefik.http.middlewares.testheader.headers.accesscontrolalloworigin=*"
+    # labels:
+    # - "traefik.enable=true"
+    # - "traefik.http.routers.backend.rule=PathPrefix(`/api`)"
+    # - "traefik.http.middlewares.testheader.headers.accesscontrolalloworigin=*"
     command:
       # - "python"
       # - "rag/postgres_example.py"

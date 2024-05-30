@@ -353,18 +353,18 @@ class FileController(Controller):
         if current_stage == "stage4":
             links = genextras.extract_markdown_links(obj.original_text)
             try:
-                
+                assert False, "TODO: Add llamaindex summary functionality."
             except:
                 response_code, response_message = (
                     422,
-                    "failure in stage 3: Unable to generate summaries and links for document.",
+                    "failure in stage 4: Unable to generate summaries and links for document.",
                 )
             else:
                 obj.links = links
                 obj.long_summary = long_sum
                 obj.short_summary = short_sum
-                current_stage = "stage4"
-            current_stage = "stage4"
+                current_stage = "stage5"
+            current_stage = "stage5"
 
         if current_stage == "completed":
             response_code, response_message = (200, "Document Fully Processed.")

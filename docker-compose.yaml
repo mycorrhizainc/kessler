@@ -24,6 +24,8 @@ services:
 
   # chroma is handled in process in the backend
   backend:
+    ports:
+      - "5055:5055"
     build:
       context: ./backend
       dockerfile: ./Dockerfile
@@ -49,10 +51,6 @@ services:
       - "--workers"
       - "4"
       - "--reload"
-    ports:
-      - "5055:5055"
-    expose:
-      - "5055"
 
       # frontend:
       #   build:

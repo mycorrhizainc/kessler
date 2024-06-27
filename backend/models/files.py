@@ -54,8 +54,6 @@ class FileSchema(PydanticBaseModel):
     summary: str | None = None
     mdata: str | None = None
     short_summary: str | None = None
-    original_text: str | None = None
-    english_text: str | None = None
 
     @field_validator("id")
     @classmethod

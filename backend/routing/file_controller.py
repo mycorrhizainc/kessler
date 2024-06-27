@@ -41,6 +41,7 @@ from models.files import (
     FileModel,
     FileRepository,
     FileSchema,
+    FileSchemaWithText,
     provide_files_repo,
 )
 
@@ -415,7 +416,7 @@ class FileController(Controller):
             new_file = FileModel(
                 url="",
                 name=filename,
-                doctype="mardown",
+                doctype="markdown",
                 lang="english",
                 source="markdown",
                 metadata=m_text,

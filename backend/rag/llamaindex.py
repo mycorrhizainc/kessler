@@ -31,6 +31,8 @@ from sqlalchemy import make_url
 from llama_index.core.response_synthesizers import CompactAndRefine
 from llama_index.core.retrievers import QueryFusionRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.vector_stores import VectorStoreQuery
+from llama_index.embeddings.openai import OpenAIEmbedding
 
 
 from llama_index.core import Document
@@ -111,6 +113,20 @@ query_engine = RetrieverQueryEngine(
     retriever=retriever,
     response_synthesizer=response_synthesizer,
 )
+
+
+def get_nodes_from_query(query: str) -> List[str]:
+    query_embeded = OpenAIEmbedding(api_key=openai.api_key).get_query_embedding(query)
+
+    vs_query = VectorStoreQuery(
+        query_embeding=query_embeded, query_str=query, similarity_top_k=10
+    )
+    result = hybrid_vector_store.query(vs_query)
+    return result.nodes
+
+
+def get_all_nodes() -> List:
+    return hybrid_vector_store.from_table("vectors").get_nodes()
 
 
 async def get_document_list_from_file_table() -> list:

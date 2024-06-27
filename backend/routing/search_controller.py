@@ -19,6 +19,12 @@ from lancedb import DBConnection
 
 from lance_store.connection import ensure_fts_index
 
+from rag.llamaindex import (
+    hybrid_vector_store,
+    get_nodes_from_query,
+    text_retriever,
+    get_all_nodes,
+)
 from typing import List
 
 
@@ -45,6 +51,10 @@ class IndexFileResponse(BaseModel):
     message: str
 
 
+class SearchNodesResponse(BaseModel):
+    message: str
+
+
 class SearchController(Controller):
     """Search Controller"""
 
@@ -66,9 +76,15 @@ class SearchController(Controller):
 
         v = lanceconn.open_table("vectors")
 
-        def get_text(x):
-            return x["text"]
-
         f = v.search(data.query).to_list()
         # search all dockets for a given item
         return f"{f[0]['id']}"
+
+    @post(path="/search/nodes")
+    async def search_nodes(
+        self, data: SearchQuery, lanceconn: DBConnection, request: Request
+    ) -> Any:
+
+        results = text_retriever.retrieve(data.query)
+        results = get_all_nodes()
+        return results

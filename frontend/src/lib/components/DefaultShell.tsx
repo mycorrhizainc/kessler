@@ -1,6 +1,5 @@
 "use client";
 import {
-  ClerkProvider,
   SignInButton,
   SignedIn,
   SignedOut,
@@ -8,45 +7,27 @@ import {
 } from "@clerk/nextjs";
 import {
   Box,
-  Image,
-  Button,
   IconButton,
-  Spacer,
-  Menu,
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 import {
   AppShell,
   Sidebar,
   SidebarOverlay,
   SidebarSection,
-  SidebarToggleButton,
   NavItem,
-  Navbar,
-  NavbarContent,
   NavGroup,
-  NavbarItem,
   SearchInput,
 } from "@saas-ui/react";
 import React, { useState } from "react";
 import { Node } from "reactflow";
 import {
-  FiHome,
-  FiUsers,
-  FiSettings,
-  FiBookmark,
-  FiStar,
-  FiSearch,
   FiChevronsLeft,
   FiChevronsRight,
   FiMessageCircle,
-  FiLayers,
   FiFeather,
 } from "react-icons/fi";
 
@@ -92,13 +73,12 @@ export default function Page({ children }: { children: React.ReactNode }) {
               alignItems="center"
               justifyContent="center"
             >
-              {/* TODO: enable this when users work */}
-              {/* <SignedOut>
+              <SignedOut>
                 <SignInButton />
               </SignedOut>
               <SignedIn>
                 <UserButton />
-              </SignedIn> */}
+              </SignedIn>
             </NavItem>
           </SidebarSection>
           <SidebarSection direction={isOpen ? "row" : "column"}>

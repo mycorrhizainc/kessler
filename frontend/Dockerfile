@@ -4,7 +4,8 @@ WORKDIR /app
 COPY frontend/package.json ./
 # install dependencies
 RUN npm install --force
-COPY frontend/ .
+COPY frontend/src ./src
+COPY frontend/public ./public
 COPY config/frontend.env.local ./
 RUN mv /app/frontend.env.local /app/.env.local
 # build

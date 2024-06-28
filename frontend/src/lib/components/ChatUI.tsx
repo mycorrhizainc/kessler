@@ -1,12 +1,9 @@
 "use client";
 import {
   Center,
-  Circle,
   Button,
   IconButton,
-  Flex,
   VStack,
-  HStack,
   StackDivider,
   Box,
   Grid,
@@ -17,7 +14,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalCloseButton,
-  Container,
   Text,
   Select,
   SkeletonText,
@@ -26,25 +22,15 @@ import {
   Form,
   FormLayout,
   Field,
-  DisplayIf,
-  SubmitButton,
 } from "@saas-ui/react";
 import { FiArrowUpCircle } from "react-icons/fi";
 import { useState, useEffect } from "react";
-import Markdown from "react-markdown";
-import { message } from "antd";
-import { start } from "repl";
-import { initialState } from "node_modules/@clerk/nextjs/dist/types/app-router/server/auth";
 import { useColorMode } from "@chakra-ui/react";
 
 import MarkdownRenderer from "./MarkdownRenderer";
-interface ChatAgent {
-  role: boolean;
-}
 
 function SourceModal() {
   // full screen modal for a given source
-
   // TODO: cache the sourceModal text in the zustand state manager
   return (
     <Box>
@@ -173,7 +159,7 @@ function MessageComponent({
         // align="stretch"
         overflowY="scroll"
         justifyContent={message.role == "user" ? "right" : "left"}
-        // h="100vh"
+      // h="100vh"
       >
         <MarkdownRenderer>{message.content}</MarkdownRenderer>
         {/* <Box width="100%" height="50px">
@@ -185,7 +171,7 @@ function MessageComponent({
   );
 }
 
-function AwaitingMessageSkeleton({}: {}) {
+function AwaitingMessageSkeleton({ }: {}) {
   const { colorMode } = useColorMode();
   return (
     <Box

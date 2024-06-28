@@ -33,12 +33,13 @@ body {
 } */
 @tailwind base;
 
+
 :root {
+  color-scheme: dark;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
   color: oklch(0% 0 116);
 
   /* background-color: oklch(89.09% 0.15 129.54); */

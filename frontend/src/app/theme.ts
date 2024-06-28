@@ -137,18 +137,19 @@ const colors = {
   },
 };
 
-const config = {
-  colors: {
-    ...colors,
-  },
+const config: ThemeConfig = {
+  // colors: {
+  //   ...colors,
+  // },
   initialColorMode: "dark",
+  useSystemColorMode: false
 };
 
 const theme = extendTheme(
   {
     config,
   },
-  baseTheme,
+  // baseTheme,
 );
 
 export default theme;

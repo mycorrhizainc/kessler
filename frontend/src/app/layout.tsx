@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { dark, neobrutalism } from '@clerk/themes';
 import { ClerkProvider } from "@clerk/nextjs";
 import { SaasProvider } from "@saas-ui/react";
 
@@ -17,7 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark
+      }}
+    >
       <html lang="en">
         <body>
           <SaasProvider>{children}</SaasProvider>

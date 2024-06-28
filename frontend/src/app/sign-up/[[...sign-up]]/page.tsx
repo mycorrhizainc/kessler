@@ -1,5 +1,9 @@
+"use client";
 import { SignUp } from "@clerk/nextjs";
+import { Center } from "@chakra-ui/react";
 
 export default function Page() {
-  return <SignUp path="/sign-up" signInUrl="/sign-in" />;
+  return <Center justifyContent="center">
+   <SignUp path="/sign-up" signInUrl="/sign-in" />
+   </Center>
 }

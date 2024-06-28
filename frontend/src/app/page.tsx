@@ -1,3 +1,4 @@
+"use client";
 import DefaultShell from "../lib/components/DefaultShell";
 import DashboardPrompt from "../lib/components/DashboardPrompt";
 import ChatUI from "../lib/components/ChatUI";

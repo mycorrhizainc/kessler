@@ -38,19 +38,10 @@ export const GetAllFiles = async (): Promise<any> => {
       "Access-Control-Allow-Origin": "*",
     },
     // body: JSON.stringify({ url: link, title: "Textual content", isUrl: true }),
-  }).then((e) => {
-    console.log("completed request");
-    console.log(e);
-    if (e.status < 200 || e.status > 299) {
-      console.log(`error adding links:\n${e}`);
-      return "failed request";
-    }
-    let res_j = e.json();
-    if (res_j == undefined) { return [] }
-    else { return res_j }
-  });
-  if (result == undefined) return [];
-  let out = result.map((f: any) => {
+  })
+  let files = await result.json();
+  console.log(files)
+  let out = files.map((f: any) => {
     return {
       id: f.id.toString(),
       url: "",
@@ -58,5 +49,5 @@ export const GetAllFiles = async (): Promise<any> => {
     };
   });
   console.log(out);
-  return out;
+  return out
 };
